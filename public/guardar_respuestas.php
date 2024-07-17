@@ -1,9 +1,10 @@
 <?php
 include '../core/db.php';
+session_start();
 
-// Establecer la conexión a la base de datos
 $conn = connectDB();
 
+$usuario_id = $_SESSION['user_id'];
 $profesor_id = $_POST['profesor_id'];
 $comentario = $_POST['comentario'];
 
@@ -13,13 +14,12 @@ foreach ($_POST as $key => $value) {
         $respuesta = $value;
 
         // Preparar y ejecutar la consulta
-        $stmt = $conn->prepare("INSERT INTO respuestas (profesor_id, criterio_id, respuesta, comentario) VALUES (?, ?, ?, ?)");
-        $stmt->bind_param("iiis", $profesor_id, $criterio_id, $respuesta, $comentario);
+        $stmt = $conn->prepare("INSERT INTO respuestas (usuario_id, profesor_id, criterio_id, respuesta, comentario) VALUES (?, ?, ?, ?, ?)");
+        $stmt->bind_param("iiiis", $usuario_id, $profesor_id, $criterio_id, $respuesta, $comentario);
         $stmt->execute();
     }
 }
 
-// Cerrar la conexión a la base de datos
 $conn->close();
 ?>
 
