@@ -8,7 +8,7 @@ if ($_SERVER["REQUEST_METHOD"] == "POST") {
     $password = $_POST['password'];
 
     // Verifica las credenciales de administrador
-    if ($username == "admin" && $password == "password") {
+    if ($username == "admin@admin.com" && $password == "password") {
         $_SESSION['loggedin'] = true;
         header("Location: ../public/admin.php");
         exit();

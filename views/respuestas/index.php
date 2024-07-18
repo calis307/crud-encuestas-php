@@ -16,7 +16,7 @@
             <th>Comentario</th>
         </tr>
         <?php
-        include '../../core/db.php';
+        include '../../core/db.php'; // Asegúrate de que la ruta a db.php es correcta
         $conn = connectDB();
         $result = $conn->query("
             SELECT usuarios.nombre AS usuario, profesores.nombre AS profesor, criterios.descripcion AS criterio, respuestas.respuesta, respuestas.comentario
